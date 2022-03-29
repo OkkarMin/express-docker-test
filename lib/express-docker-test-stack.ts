@@ -5,7 +5,12 @@ import * as ecs from "aws-cdk-lib/aws-ecs";
 import * as ecs_patterns from "aws-cdk-lib/aws-ecs-patterns";
 
 export class ExpressDockerTestStack extends Stack {
-  constructor(scope: Construct, id: string, props?: StackProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    stageName: string,
+    props?: StackProps
+  ) {
     super(scope, id, props);
 
     const vpc = new ec2.Vpc(this, "express-docker-test-vpc");
@@ -28,6 +33,9 @@ export class ExpressDockerTestStack extends Stack {
         taskImageOptions: {
           image: ecs.ContainerImage.fromAsset("express"),
           containerPort: 3000,
+          environment: {
+            STAGE_NAME: stageName,
+          },
         },
       }
     );
