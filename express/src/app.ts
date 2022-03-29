@@ -9,7 +9,7 @@ app.get("/health", (req: Request, res: Response) => {
 });
 
 app.get("/newRoute1", (req: Request, res: Response) => {
-  res.send("hello from newRoute1");
+  res.send("hello from newRoute1 with changed message");
 });
 
 app.get("*", (req: Request, res: Response) => {
