@@ -2,6 +2,7 @@
 import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
 import { ExpressDockerTestStack } from "../lib/express-docker-test-stack";
+import { CiCdAwsPipelineDemoStack } from "../lib/cdk-pipeline-stack";
 
 const app = new cdk.App();
 new ExpressDockerTestStack(app, "ExpressDockerTestStack", {
@@ -21,4 +22,11 @@ new ExpressDockerTestStack(app, "ExpressDockerTestStack", {
   // env: { account: '123456789012', region: 'us-east-1' },
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
+});
+
+new CiCdAwsPipelineDemoStack(app, "CiCdAwsPipelineDemoStack", {
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION,
+  },
 });
