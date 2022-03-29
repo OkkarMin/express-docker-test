@@ -13,16 +13,20 @@ export class ExpressDockerTestStack extends Stack {
   ) {
     super(scope, id, props);
 
-    const vpc = new ec2.Vpc(this, "express-docker-test-vpc");
+    const vpc = new ec2.Vpc(this, `${stageName}-express-docker-test-vpc`);
 
-    const cluster = new ecs.Cluster(this, "express-docker-test-cluster", {
-      vpc,
-      clusterName: "express-docker-test-cluster",
-    });
+    const cluster = new ecs.Cluster(
+      this,
+      `${stageName}-express-docker-test-cluster`,
+      {
+        vpc,
+        clusterName: `${stageName}-express-docker-test-cluster`,
+      }
+    );
 
     const expressApp = new ecs_patterns.ApplicationLoadBalancedFargateService(
       this,
-      "express-docker-test-service",
+      `${stageName}-express-docker-test-service`,
       {
         cluster,
         publicLoadBalancer: true,
