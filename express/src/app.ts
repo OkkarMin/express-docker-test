@@ -8,6 +8,10 @@ app.get("/health", (req: Request, res: Response) => {
   res.send("OK");
 });
 
+app.get("/newRoute1", (req: Request, res: Response) => {
+  res.send("hello from newRoute1");
+});
+
 app.get("*", (req: Request, res: Response) => {
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   const stageName = process.env.STAGE_NAME?.toUpperCase();
