@@ -10,8 +10,9 @@ app.get("/health", (req: Request, res: Response) => {
 
 app.get("*", (req: Request, res: Response) => {
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+  const stageName = process.env.STAGE_NAME?.toUpperCase();
 
-  res.send(`Hello ${ip}! You are going to ${req.url}`);
+  res.send(`Hello ${ip}! You are going to ${req.url} on ${stageName}`);
 });
 
 app.listen(PORT, function () {
