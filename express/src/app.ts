@@ -8,8 +8,8 @@ app.get("/health", (req: Request, res: Response) => {
   res.send("OK");
 });
 
-app.get("/newRoute1", (req: Request, res: Response) => {
-  res.send("hello from newRoute1 with updated message");
+app.get("/helloYS", (req: Request, res: Response) => {
+  res.send("hello from YS route");
 });
 
 app.get("*", (req: Request, res: Response) => {
